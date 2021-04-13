@@ -95,6 +95,7 @@ public class StashNotifierTest {
                 null,
                 null,
                 null,
+                null,
                 true,
                 "test-project",
                 true,
@@ -234,6 +235,7 @@ public class StashNotifierTest {
                 "https://localhost",
                 "scot",
                 true,
+                null,
                 null,
                 null,
                 null,
@@ -489,6 +491,7 @@ public class StashNotifierTest {
                 sha1,
                 null,
                 null,
+                null,
                 true,
                 null,
                 false,
@@ -515,6 +518,7 @@ public class StashNotifierTest {
                 "scot",
                 true,
                 sha1,
+                null,
                 null,
                 null,
                 true,
@@ -548,30 +552,6 @@ public class StashNotifierTest {
     }
 
     @Test
-    public void test_getBuildDescription() {
-        //given
-        AbstractBuild build = mock(AbstractBuild.class);
-        when(build.getDescription()).thenReturn("some description");
-
-        //when
-        String description = sn.getBuildDescription(build, StashBuildState.FAILED);
-
-        //then
-        assertThat(description, is("some description"));
-    }
-
-    private String getBuildDescriptionWhenBuildDescriptionIsNull(StashBuildState buildState) {
-        return sn.getBuildDescription(mock(AbstractBuild.class), buildState);
-    }
-
-    @Test
-    public void test_getBuildDescription_state() {
-        assertThat(getBuildDescriptionWhenBuildDescriptionIsNull(StashBuildState.SUCCESSFUL), is("built by Jenkins @ http://localhost/"));
-        assertThat(getBuildDescriptionWhenBuildDescriptionIsNull(StashBuildState.FAILED), is("built by Jenkins @ http://localhost/"));
-        assertThat(getBuildDescriptionWhenBuildDescriptionIsNull(StashBuildState.INPROGRESS), is("building on Jenkins @ http://localhost/"));
-    }
-
-    @Test
     public void test_createRequest() throws Exception {
         //given
         UsernamePasswordCredentialsImpl credential = new UsernamePasswordCredentialsImpl(CredentialsScope.GLOBAL, "", "", "admin", "tiger");
@@ -598,6 +578,7 @@ public class StashNotifierTest {
                 null,
                 state.name(),
                 null,
+                null,
                 true,
                 null,
                 true,
@@ -619,6 +600,7 @@ public class StashNotifierTest {
                 "",
                 "scot",
                 true,
+                null,
                 null,
                 null,
                 null,
@@ -649,6 +631,7 @@ public class StashNotifierTest {
                 null,
                 null,
                 name,
+                null,
                 true,
                 null,
                 true,
@@ -672,6 +655,7 @@ public class StashNotifierTest {
                 "",
                 "scot",
                 true,
+                null,
                 null,
                 null,
                 null,
@@ -705,6 +689,7 @@ public class StashNotifierTest {
                 null,
                 null,
                 "build-name",
+                null,
                 true,
                 key,
                 true,
@@ -736,6 +721,7 @@ public class StashNotifierTest {
                 null,
                 null,
                 buildName,
+                null,
                 true,
                 null,
                 true,
@@ -768,6 +754,7 @@ public class StashNotifierTest {
                 null,
                 null,
                 null,
+                null,
                 true,
                 key,
                 true,
@@ -794,6 +781,7 @@ public class StashNotifierTest {
                 "",
                 "scot",
                 true,
+                null,
                 null,
                 null,
                 null,
@@ -826,6 +814,7 @@ public class StashNotifierTest {
                 "",
                 "scot",
                 true,
+                null,
                 null,
                 null,
                 null,

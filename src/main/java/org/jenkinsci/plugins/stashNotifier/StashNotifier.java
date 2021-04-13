@@ -134,6 +134,11 @@ public class StashNotifier extends Notifier implements SimpleBuildStep {
     private final String buildName;
 
     /**
+     * buildDescription
+     */
+    private final String buildDescription;
+
+    /**
      * if true, the build number is included in the Bitbucket notification.
      */
     private final boolean includeBuildNumberInKey;
@@ -174,6 +179,7 @@ public class StashNotifier extends Notifier implements SimpleBuildStep {
             String commitSha1,
             String buildStatus,
             String buildName,
+            String buildDescription,
             boolean includeBuildNumberInKey,
             String projectKey,
             boolean prependParentProjectKey,
@@ -198,6 +204,7 @@ public class StashNotifier extends Notifier implements SimpleBuildStep {
         this.buildStatus = overwrittenBuildState;
 
         this.buildName = buildName;
+        this.buildDescription = buildDescription;
         this.includeBuildNumberInKey = includeBuildNumberInKey;
         this.projectKey = projectKey;
         this.prependParentProjectKey = prependParentProjectKey;
@@ -214,6 +221,7 @@ public class StashNotifier extends Notifier implements SimpleBuildStep {
             String commitSha1,
             String buildStatus,
             String buildName,
+            String buildDescription,
             boolean includeBuildNumberInKey,
             String projectKey,
             boolean prependParentProjectKey,
@@ -227,6 +235,7 @@ public class StashNotifier extends Notifier implements SimpleBuildStep {
                 commitSha1,
                 buildStatus,
                 buildName,
+                buildDescription,
                 includeBuildNumberInKey,
                 projectKey,
                 prependParentProjectKey,
@@ -266,6 +275,10 @@ public class StashNotifier extends Notifier implements SimpleBuildStep {
 
     public String getBuildName() {
         return buildName;
+    }
+
+    public String getBuildDescription() {
+        return buildDescription;
     }
 
     public boolean getIncludeBuildNumberInKey() {
@@ -1031,11 +1044,9 @@ public class StashNotifier extends Notifier implements SimpleBuildStep {
     protected String getBuildDescription(
             final Run<?, ?> run,
             final StashBuildState state) {
-
-        if (run.getDescription() != null
-                && run.getDescription().trim().length() > 0) {
-
-            return run.getDescription();
+                
+        if (buildDescription != null && buildDescription.trim().length() > 0) {
+            return buildDescription;
         } else {
             switch (state) {
                 case INPROGRESS:
